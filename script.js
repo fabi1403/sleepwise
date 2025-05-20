@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
         `,
         jovenes: `
-            <h3>👩 Jóvenes adultos (19-25 años)</h3>
+            <h3>👩 Jóvenes adultos (19-64 años)</h3>
             <ul>
                 <li>Horas recomendadas: 7 a 9 horas diarias.</li>
                 <li>Estilo de vida activo: Las demandas laborales y académicas pueden afectar la calidad del sueño.</li>
