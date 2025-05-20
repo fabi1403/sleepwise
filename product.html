@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="sueño, descanso, recomendaciones, edad, Sleepwise" />
+  <meta name="description" content="Descubre recomendaciones de sueño personalizadas según tu edad y mejora tu descanso cada noche. ¡Duerme mejor, vive mejor!" />
+  <meta name="author" content="Sleepwise" />
+
+  <title>Sleepwise - Recomendaciones de Sueño</title>
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="css/modern-style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Estilo para pestañas horizontales */
+    .horizontal-tabs {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 20px;
+    }
+    
+    .tab-panel {
+        flex: 1;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para la navegación horizontal */
+    .header-nav .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Estilos para las preguntas sugeridas */
+    .suggested-questions-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 15px 0;
+        justify-content: center;
+    }
+
+    .suggested-question-btn {
+        background-color: #f0f8ff;
+        border: 1px solid #add8e6;
+        border-radius: 20px;
+        padding: 8px 15px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .suggested-question-btn:hover {
+        background-color: #add8e6;
+        transform: scale(1.05);
+    }
+    
+    /* Estilos para los mensajes del chatbot */
+    .message {
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        max-width: 80%;
+        white-space: pre-line;
+    }
+    
+    .user-message {
+        background-color: #e6f7ff;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+    }
+    
+    .bot-message {
+        background-color: #f0f0f0;
+        margin-right: auto;
+        border-bottom-left-radius: 5px;
+    }
+    
+    .chat-container {
+        height: 300px;
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+  
+  <!-- Favicon -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  
+  <link rel="icon" type="image/png" href="public/logo.png" />
+  
+  <title>Producto - Sleepwise</title>
+</head>
+
+<body>
+    <!-- HEADER SECTION -->
+    <header class="modern-header">
+        <div class="header-left">
+            <img src="public/logo.png" alt="Sleepwise Logo" class="logo-img">
+            <h1>Sleepwise</h1>
+        </div>
+        <div class="header-center-emojis">😴💤🌙✨</div>
+        <nav class="header-nav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">Sobre nosotros</a>
+                </li> 
+                <a class="nav-link" href="product.html">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="client.html">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contáctanos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="ia-info-link" class="ai-link" onclick="showChatbotInfo()">Información IA 🤖</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header-right-theme">
+            <span id="theme-toggle-emoji" class="theme-toggle">☀️</span>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT SECTION -->
+    <main class="content-container">
+        <section id="intro" class="intro-section">
+            <h2>¡Bienvenido a Sleepwise!</h2>
+            <p>🌙✨ Descubre recomendaciones de sueño personalizadas según tu edad 🧒👵</p>
+            <p>y mejora tu descanso cada noche. ¡Duerme mejor, vive mejor! 😴💫</p>
+        </section>
+        
+        <section id="age-input" class="age-input-section">
+            <h2>Ingresa tu edad</h2>
+            <div class="input-group">
+                <input type="number" id="age" placeholder="Introduce tu edad" class="age-input">
+                <button id="show-recommendations" class="recommendations-btn" onclick="showSleepInfo()">Conoce más sobre tu sueño</button>
+            </div>
+        </section>
+        
+        <section id="tabs" class="tabs-section horizontal-tabs hidden">
+            <div id="left-tab" class="tab-panel">
+                <!-- Age group logo and recommendation will be displayed here by script -->
+            </div>
+            <div id="right-tab" class="tab-panel">
+                <h2>Información sobre el sueño</h2>
+                <p>Detalles sobre el tiempo y las horas recomendadas de sueño.</p>
+            </div>
+        </section>
+        
+        <div id="center-emoji" class="center-emoji"></div>
+    </main>
+
+    <!-- CHATBOT SECTION -->
+    <section id="ia-info-section" class="ia-section hidden">
+        <div class="chatgpt-interface">
+            <div id="chat-box" class="chat-container">
+                <div class="message bot-message">¡Hola! Soy tu asistente de sueño. ¿En qué puedo ayudarte hoy?</div>
+                <!-- Messages will be added here by script -->
+            </div>
+            <div class="suggested-questions-container" id="suggested-questions-container">
+                <!-- Las preguntas sugeridas se añadirán aquí mediante JavaScript -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Escribe tu pregunta aquí...">
+                <button id="send-message">Enviar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="modern-footer">
+        <p>&copy; @FBN_Sleepwise 2025</p>
+    </footer>
+    
+    <!-- NAVIGATION CONTROLS -->
+    <div id="back-arrow" class="back-navigation" onclick="goToProductHome()">&#x2190;</div>
+ 
+    <!-- SCRIPTS -->
+    <!-- Core functionality script -->
+    <script src="../script.js"></script>
+    <!-- Chatbot functionality script -->
+    <script src="../chatbot.js"></script>
+    
+    <script>
+        // Función para determinar el grupo de edad
+        function getAgeGroup(age) {
+            if (age >= 0 && age <= 2) return 'bebes';
+            if (age >= 3 && age <= 13) return 'ninos';
+            if (age >= 14 && age <= 17) return 'adolescentes';
+            if (age >= 18 && age <= 64) return 'jovenes';
+            if (age >= 65) return 'adultos_mayores';
+            return null; // Handle invalid age
+        }
+
+        // Función para mostrar la información del script.js
+        function showSleepInfo() {
+            const age = parseInt(document.getElementById('age').value, 10);
+            if (!isNaN(age)) {
+                const group = getAgeGroup(age);
+                if (group) {
+                    // Ocultar secciones iniciales
+                    document.getElementById('intro').classList.add('hidden');
+                    document.getElementById('age-input').classList.add('hidden');
+                    
+                    // Mostrar sección de pestañas
+                    document.getElementById('tabs').classList.remove('hidden');
+                    document.getElementById('back-arrow').classList.add('visible');
+                    
+                    // Cargar datos desde script.js
+                    // Aquí se simula la funcionalidad de displayRecommendationsInTabs
+                    // ya que no podemos acceder directamente a las funciones de script.js
+                    loadSleepRecommendations(group);
+                }
+            }
+        }
+        
+        // Función para cargar recomendaciones de sueño
+        function loadSleepRecommendations(group) {
+            // Definir recomendaciones básicas para cada grupo de edad
+            const recommendations = {
+                bebes: "👶🛏️ Los bebés necesitan entre 12 y 16 horas de sueño al día, incluyendo siestas.",
+                ninos: "🧒🌙 Los niños necesitan 10-13 horas de sueño para un desarrollo óptimo.",
+                adolescentes: "🧑📱 Los adolescentes necesitan 8-10 horas de sueño para un rendimiento óptimo.",
+                jovenes: "🎧🛌 Los adultos jóvenes necesitan 7-9 horas de sueño por noche.",
+                adultos_mayores: "👵🕰️ Los adultos mayores necesitan alrededor de 7-8 horas de sueño."
+            };
+            
+            // Mostrar recomendación en el panel izquierdo
+            document.getElementById('left-tab').innerHTML = `
+                <img src="public/${group}_icon.svg" alt="${group} icon" style="height: 50px; margin-bottom: 10px;">
+                <h2>Recomendaciones para ${group.replace('_', ' ')}</h2>
+                <p>${recommendations[group]}</p>
+            `;
+            
+            // Mostrar información detallada en el panel derecho
+            document.getElementById('right-tab').innerHTML = `
+                <h2>Información detallada</h2>
+                <p>Para más información detallada sobre las recomendaciones de sueño para este grupo de edad, consulta nuestras guías completas.</p>
+            `;
+        }
+        
+        // Función para mostrar el chatbot
+        function showChatbotInfo() {
+            // Ocultar secciones actuales
+            document.getElementById('intro').classList.add('hidden');
+            document.getElementById('age-input').classList.add('hidden');
+            document.getElementById('tabs').classList.add('hidden');
+            
+            // Mostrar sección de IA
+            document.getElementById('ia-info-section').classList.remove('hidden');
+            document.getElementById('back-arrow').classList.add('visible');
+            
+            // Cargar preguntas sugeridas
+            loadSuggestedQuestions();
+        }
+        
+        // Definición de preguntas sugeridas y respuestas predefinidas
+        const chatbotData = {
+            suggestedQuestions: [
+                '💫 ¿Cómo puedo mejorar mi calidad de sueño?',
+                '😴 ¿Qué efectos tiene la falta de sueño?',
+                '🌙 ¿Cuáles son los mejores hábitos antes de dormir?',
+                '⏰ ¿Por qué es importante mantener un horario de sueño regular?'
+            ],
+            responses: {
+                'mejora_calidad': {
+                    question: '¿Cómo puedo mejorar mi calidad de sueño?',
+                    answer: '✨💫 ¡Hola! Aquí tienes consejos para mejorar tu sueño: 🌟\n\n⏰ 1. Mantén un horario regular de sueño 💤\n🌙 2. Crea un ambiente oscuro y fresco en tu habitación 🌬️\n📱 3. Evita las pantallas antes de dormir 🚫\n🏃‍♂️ 4. Haz ejercicio durante el día 💪\n☕ 5. Evita la cafeína por la tarde ❌\n🧘‍♀️ 6. Practica técnicas de relajación antes de dormir 🎯'
+                },
+                'efectos_falta': {
+                    question: '¿Qué efectos tiene la falta de sueño?',
+                    answer: '⚠️ ¡Atención! La falta de sueño puede afectarte así: 🚨\n\n🧠 1. Disminución de la concentración y memoria 📚\n😤 2. Cambios de humor e irritabilidad 😫\n🤒 3. Debilitamiento del sistema inmune 🛡️\n⚡ 4. Mayor riesgo de problemas de salud 🏥\n😰 5. Aumento del estrés y ansiedad 💭\n📉 6. Menor rendimiento físico y mental 💪'
+                },
+                'habitos': {
+                    question: '¿Cuáles son los mejores hábitos antes de dormir?',
+                    answer: '🌟 ¡Descubre los mejores hábitos para un dulce sueño! 💫\n\n📚 1. Leer un libro tranquilamente 📖\n🚿 2. Tomar una ducha tibia relajante 💆‍♀️\n🧘‍♀️ 3. Practicar meditación o respiración profunda 🌸\n🥗 4. Evitar comidas pesadas 🚫\n📱 5. Apagar dispositivos electrónicos 🌙\n✨ 6. Mantener una rutina relajante 🎯'
+                },
+                'horario_regular': {
+                    question: '¿Por qué es importante mantener un horario de sueño regular?',
+                    answer: '⏰ ¡Descubre por qué un horario regular es tu mejor amigo! 🌟\n\n🌙 1. Ayuda a regular tu reloj biológico ⚡\n💫 2. Mejora la calidad del sueño 🎯\n😴 3. Facilita quedarse dormido y despertar 🌅\n💪 4. Optimiza las funciones corporales 🔄\n❤️ 5. Reduce el riesgo de problemas de salud 🏥\n✨ 6. Mejora el estado de ánimo y la energía durante el día 🌞'
+                }
+            }
+        };
+        
+        // Función para cargar las preguntas sugeridas
+        function loadSuggestedQuestions() {
+            const suggestedContainer = document.getElementById('suggested-questions-container');
+            if (!suggestedContainer) return;
+            
+            // Limpiar contenedor
+            suggestedContainer.innerHTML = '';
+            
+            // Agregar preguntas sugeridas
+            chatbotData.suggestedQuestions.forEach(question => {
+                const questionButton = document.createElement('button');
+                questionButton.className = 'suggested-question-btn';
+                questionButton.textContent = question;
+                questionButton.addEventListener('click', () => handleUserQuestion(question));
+                suggestedContainer.appendChild(questionButton);
+            });
+        }
+
+        // Función para manejar el envío de mensajes del usuario
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-message');
+
+            if (chatInput && sendButton) {
+                sendButton.addEventListener('click', function() {
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        handleUserQuestion(message);
+                        chatInput.value = '';
+                    }
+                });
+
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const message = chatInput.value.trim();
+                        if (message) {
+                            handleUserQuestion(message);
+                            chatInput.value = '';
+                        }
+                    }
+                });
+            }
+        });
+
+        // Función para manejar las preguntas del usuario
+        function handleUserQuestion(question) {
+            const chatBox = document.getElementById('chat-box');
+            
+            // Agregar mensaje del usuario
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = question;
+            chatBox.appendChild(userMessage);
+
+            // Buscar respuesta en el chatbotData
+            let response = '';
+            if (question.includes('mejorar') || question.includes('calidad de sueño')) {
+                response = chatbotData.responses.mejora_calidad.answer;
+            } else if (question.includes('falta de sueño') || question.includes('efectos')) {
+                response = chatbotData.responses.efectos_falta.answer;
+            } else if (question.includes('hábitos') || question.includes('antes de dormir')) {
+                response = chatbotData.responses.habitos.answer;
+            } else if (question.includes('horario') || question.includes('regular')) {
+                response = chatbotData.responses.horario_regular.answer;
+            } else {
+                response = 'Lo siento, no tengo una respuesta específica para esa pregunta. ¿Podrías intentar con una de las preguntas sugeridas?';
+            }
+
+            // Simular delay de respuesta
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                botMessage.textContent = response;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+        // Nueva función para regresar al inicio de productos
+        function goToProductHome() {
+            document.getElementById('intro').classList.remove('hidden');
+            document.getElementById('age-input').classList.remove('hidden');
+            document.getElementById('tabs').classList.add('hidden');
+            document.getElementById('ia-info-section').classList.add('hidden');
+            document.getElementById('back-arrow').classList.remove('visible');
+        }
+    </script>
+</body>
+
+</html>
